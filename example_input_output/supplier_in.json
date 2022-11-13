@@ -1,0 +1,18 @@
+{
+  "type": "supplier",
+  "inFlow": {},
+  "outFlow": {
+    "mat1_sup1": {
+      "qty": 2000,
+      "lb": 0,
+      "ppu": 5,
+      "item": "mat1"
+    },
+    "mat2_sup1": {
+      "qty": 1500,
+      "lb": 0,
+      "ppu": 4,
+      "item": "mat2"
+    }
+  }
+}

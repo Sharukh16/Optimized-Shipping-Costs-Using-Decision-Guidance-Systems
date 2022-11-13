@@ -1,0 +1,338 @@
+{
+  "cost": 31300,
+  "constraints": true,
+  "rootService": "mySupplyChain",
+  "services": {
+    "sup1": {
+      "type": "supplier",
+      "cost": 16000,
+      "constraints": true,
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup1": {
+          "qty": 2000,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "qty": 1500,
+          "item": "mat2"
+        }
+      }
+    },
+    "sup2": {
+      "type": "supplier",
+      "cost": 4900,
+      "constraints": true,
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup2": {
+          "qty": 500,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "qty": 1300,
+          "item": "mat2"
+        }
+      }
+    },
+    "combinedSupply": {
+      "type": "composite",
+      "cost": 20900,
+      "constraints": true,
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup1": {
+          "qty": 2000,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "qty": 1500,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "qty": 500,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "qty": 1300,
+          "item": "mat2"
+        }
+      },
+      "subServices": [
+        "sup1",
+        "sup2"
+      ]
+    },
+    "transp1": {
+      "type": "transport",
+      "cost": 5000,
+      "constraints": true,
+      "inFlow": {
+        "mat1_sup1": {
+          "qty": 600,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "qty": 700,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "qty": 400,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "qty": 600,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "qty": 1000,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "qty": 1300,
+          "item": "mat2"
+        }
+      },
+      "debug": {
+        "busEntities": {
+          "sup1": {
+            "loc": "Fairfax"
+          },
+          "sup2": {
+            "loc": "LA"
+          },
+          "transp1": {
+            "loc": "Seattle"
+          },
+          "transp2": {
+            "loc": "Baltimore"
+          },
+          "manuf1": {
+            "loc": "NYC"
+          },
+          "manuf2": {
+            "loc": "NYC"
+          }
+        },
+        "sourceLocations": [
+          "Fairfax",
+          "LA"
+        ],
+        "destsPerSource": {
+          "Fairfax": [
+            "NYC"
+          ],
+          "LA": [
+            "NYC"
+          ]
+        }
+      }
+    },
+    "transp2": {
+      "type": "transport",
+      "cost": 2400,
+      "constraints": true,
+      "inFlow": {
+        "mat1_sup1": {
+          "qty": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "qty": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "qty": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "qty": 600,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "qty": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "qty": 600,
+          "item": "mat2"
+        }
+      },
+      "debug": {
+        "busEntities": {
+          "sup1": {
+            "loc": "Fairfax"
+          },
+          "sup2": {
+            "loc": "LA"
+          },
+          "transp1": {
+            "loc": "Seattle"
+          },
+          "transp2": {
+            "loc": "Baltimore"
+          },
+          "manuf1": {
+            "loc": "NYC"
+          },
+          "manuf2": {
+            "loc": "NYC"
+          }
+        },
+        "sourceLocations": [
+          "Fairfax",
+          "LA"
+        ],
+        "destsPerSource": {
+          "Fairfax": [
+            "NYC"
+          ],
+          "LA": [
+            "NYC"
+          ]
+        }
+      }
+    },
+    "combinedTransport": {
+      "type": "composite",
+      "cost": 7400,
+      "constraints": true,
+      "inFlow": {
+        "mat1_sup1": {
+          "qty": 600,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "qty": 700,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "qty": 400,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "qty": 1200,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "qty": 1000,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "qty": 1900,
+          "item": "mat2"
+        }
+      },
+      "subServices": [
+        "transp1",
+        "transp2"
+      ]
+    },
+    "tier1manuf": {
+      "type": "manufacturer",
+      "cost": 1300,
+      "constraints": true,
+      "inFlow": {
+        "mat1_manuf1": {
+          "qty": 600,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "qty": 1800,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "part1_manuf12": {
+          "qty": 300,
+          "item": "part1"
+        },
+        "part2_manuf12": {
+          "qty": 500,
+          "item": "part2"
+        }
+      }
+    },
+    "tier2manuf": {
+      "type": "manufacturer",
+      "cost": 1700,
+      "constraints": true,
+      "inFlow": {
+        "part1_manuf12": {
+          "qty": 300,
+          "item": "part1"
+        },
+        "part2_manuf12": {
+          "qty": 500,
+          "item": "part2"
+        }
+      },
+      "outFlow": {
+        "prod1_manuf2": {
+          "qty": 100,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "qty": 200,
+          "item": "prod2"
+        }
+      }
+    },
+    "combinedManuf": {
+      "type": "composite",
+      "cost": 3000,
+      "constraints": true,
+      "inFlow": {
+        "mat1_manuf1": {
+          "qty": 600,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "qty": 1800,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "prod1_manuf2": {
+          "qty": 100,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "qty": 200,
+          "item": "prod2"
+        }
+      },
+      "subServices": [
+        "tier1manuf",
+        "tier2manuf"
+      ]
+    },
+    "mySupplyChain": {
+      "type": "composite",
+      "cost": 31300,
+      "constraints": true,
+      "inFlow": {},
+      "outFlow": {
+        "prod1_manuf2": {
+          "qty": 100,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "qty": 200,
+          "item": "prod2"
+        }
+      },
+      "subServices": [
+        "combinedSupply",
+        "combinedTransport",
+        "combinedManuf"
+      ]
+    }
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "optAnswer": {
+    "status": {
+      "solver_status": "ok",
+      "termination_condition": "optimal"
+    },
+    "solution": {
+      "shared": {
+        "busEntities": {
+          "sup1": {
+            "loc": "Fairfax"
+          },
+          "sup2": {
+            "loc": "LA"
+          },
+          "transp1": {
+            "loc": "Seattle"
+          },
+          "transp2": {
+            "loc": "Baltimore"
+          },
+          "manuf1": {
+            "loc": "NYC"
+          },
+          "manuf2": {
+            "loc": "NYC"
+          }
+        },
+        "items": {
+          "mat1": {
+            "weight": 1
+          },
+          "mat2": {
+            "weight": 2
+          },
+          "part1": {
+            "weight": 7
+          },
+          "part2": {
+            "weight": 6
+          },
+          "prod1": {
+            "weight": 8
+          },
+          "prod2": {
+            "weight": 9
+          }
+        }
+      },
+      "rootService": "combinedSupply",
+      "services": {
+        "combinedSupply": {
+          "type": "composite",
+          "inFlow": {},
+          "outFlow": {
+            "mat1_sup1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "lb": 0,
+              "item": "mat2"
+            },
+            "mat1_sup2": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "subServices": [
+            "sup1",
+            "sup2"
+          ]
+        },
+        "sup1": {
+          "type": "supplier",
+          "inFlow": {},
+          "outFlow": {
+            "mat1_sup1": {
+              "qty": 0,
+              "lb": 0,
+              "ppu": 5,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "qty": 0,
+              "lb": 0,
+              "ppu": 4,
+              "item": "mat2"
+            }
+          }
+        },
+        "sup2": {
+          "type": "supplier",
+          "inFlow": {},
+          "outFlow": {
+            "mat1_sup2": {
+              "qty": 1000,
+              "lb": 0,
+              "ppu": 2,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "qty": 2000,
+              "lb": 0,
+              "ppu": 3,
+              "item": "mat2"
+            }
+          }
+        }
+      }
+    },
+    "report": {
+      "Problem": [
+        {
+          "Lower bound": "8000.0",
+          "Name": "unknown",
+          "Number of constraints": 19,
+          "Number of nonzeros": 21,
+          "Number of objectives": 1,
+          "Number of variables": 5,
+          "Sense": "minimize",
+          "Upper bound": "8000.0"
+        }
+      ],
+      "Solution": [
+        {
+          "number of solutions": 0,
+          "number of solutions displayed": 0
+        }
+      ],
+      "Solver": [
+        {
+          "Error rc": 0,
+          "Statistics": {
+            "Branch and bound": {
+              "Number of bounded subproblems": "1",
+              "Number of created subproblems": "1"
+            }
+          },
+          "Status": "ok",
+          "Termination condition": "optimal",
+          "Time": 0.031209945678710938
+        }
+      ]
+    }
+  },
+  "optOutput": {
+    "cost": 8000,
+    "constraints": true,
+    "rootService": "combinedSupply",
+    "services": {
+      "sup1": {
+        "type": "supplier",
+        "cost": 0,
+        "constraints": true,
+        "inFlow": {},
+        "outFlow": {
+          "mat1_sup1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        }
+      },
+      "sup2": {
+        "type": "supplier",
+        "cost": 8000,
+        "constraints": true,
+        "inFlow": {},
+        "outFlow": {
+          "mat1_sup2": {
+            "qty": 1000,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 2000,
+            "item": "mat2"
+          }
+        }
+      },
+      "combinedSupply": {
+        "type": "composite",
+        "cost": 8000,
+        "constraints": true,
+        "inFlow": {},
+        "outFlow": {
+          "mat1_sup1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 0,
+            "item": "mat2"
+          },
+          "mat1_sup2": {
+            "qty": 1000,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 2000,
+            "item": "mat2"
+          }
+        },
+        "subServices": [
+          "sup1",
+          "sup2"
+        ]
+      }
+    }
+  }
+}

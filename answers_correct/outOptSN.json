@@ -1,0 +1,780 @@
+{
+  "optAnswer": {
+    "status": {
+      "solver_status": "ok",
+      "termination_condition": "optimal"
+    },
+    "solution": {
+      "shared": {
+        "busEntities": {
+          "sup1": {
+            "loc": "Fairfax"
+          },
+          "sup2": {
+            "loc": "LA"
+          },
+          "transp1": {
+            "loc": "Seattle"
+          },
+          "transp2": {
+            "loc": "Baltimore"
+          },
+          "manuf1": {
+            "loc": "NYC"
+          },
+          "manuf2": {
+            "loc": "NYC"
+          }
+        },
+        "items": {
+          "mat1": {
+            "weight": 1
+          },
+          "mat2": {
+            "weight": 2
+          },
+          "part1": {
+            "weight": 7
+          },
+          "part2": {
+            "weight": 6
+          },
+          "prod1": {
+            "weight": 8
+          },
+          "prod2": {
+            "weight": 9
+          }
+        }
+      },
+      "rootService": "mySupplyChain",
+      "services": {
+        "mySupplyChain": {
+          "type": "composite",
+          "inFlow": {},
+          "outFlow": {
+            "prod1_manuf2": {
+              "lb": 100,
+              "item": "prod1"
+            },
+            "prod2_manuf2": {
+              "lb": 200,
+              "item": "prod2"
+            }
+          },
+          "subServices": [
+            "combinedSupply",
+            "combinedTransport",
+            "combinedManuf"
+          ]
+        },
+        "combinedSupply": {
+          "type": "composite",
+          "inFlow": {},
+          "outFlow": {
+            "mat1_sup1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "lb": 0,
+              "item": "mat2"
+            },
+            "mat1_sup2": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "subServices": [
+            "sup1",
+            "sup2"
+          ]
+        },
+        "combinedTransport": {
+          "type": "composite",
+          "inFlow": {
+            "mat1_sup1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "lb": 0,
+              "item": "mat2"
+            },
+            "mat1_sup2": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "outFlow": {
+            "mat1_manuf1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_manuf1": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "subServices": [
+            "transp1",
+            "transp2"
+          ]
+        },
+        "combinedManuf": {
+          "type": "composite",
+          "inFlow": {
+            "mat1_manuf1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_manuf1": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "outFlow": {
+            "prod1_manuf2": {
+              "lb": 0,
+              "item": "prod1"
+            },
+            "prod2_manuf2": {
+              "lb": 0,
+              "item": "prod2"
+            }
+          },
+          "subServices": [
+            "tier1manuf",
+            "tier2manuf"
+          ]
+        },
+        "sup1": {
+          "type": "supplier",
+          "inFlow": {},
+          "outFlow": {
+            "mat1_sup1": {
+              "qty": 0,
+              "lb": 0,
+              "ppu": 5,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "qty": 18000,
+              "lb": 0,
+              "ppu": 4,
+              "item": "mat2"
+            }
+          }
+        },
+        "sup2": {
+          "type": "supplier",
+          "inFlow": {},
+          "outFlow": {
+            "mat1_sup2": {
+              "qty": 6000,
+              "lb": 0,
+              "ppu": 2,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "qty": 0,
+              "lb": 0,
+              "ppu": 3,
+              "item": "mat2"
+            }
+          }
+        },
+        "transp1": {
+          "type": "transport",
+          "inFlow": {
+            "mat1_sup1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "lb": 0,
+              "item": "mat2"
+            },
+            "mat1_sup2": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "outFlow": {
+            "mat1_manuf1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_manuf1": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "pplbFromTo": {
+            "Fairfax": {
+              "NYC": 0.5
+            },
+            "LA": {
+              "NYC": 2.5
+            }
+          },
+          "orders": [
+            {
+              "in": "mat1_sup1",
+              "out": "mat1_manuf1",
+              "sender": "sup1",
+              "recipient": "manuf1",
+              "qty": 0
+            },
+            {
+              "in": "mat2_sup1",
+              "out": "mat2_manuf1",
+              "sender": "sup1",
+              "recipient": "manuf1",
+              "qty": 0
+            },
+            {
+              "in": "mat1_sup2",
+              "out": "mat1_manuf1",
+              "sender": "sup2",
+              "recipient": "manuf1",
+              "qty": 0
+            },
+            {
+              "in": "mat2_sup2",
+              "out": "mat2_manuf1",
+              "sender": "sup2",
+              "recipient": "manuf1",
+              "qty": 0
+            }
+          ]
+        },
+        "transp2": {
+          "type": "transport",
+          "inFlow": {
+            "mat1_sup1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "lb": 0,
+              "item": "mat2"
+            },
+            "mat1_sup2": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "outFlow": {
+            "mat1_manuf1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_manuf1": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "pplbFromTo": {
+            "Fairfax": {
+              "NYC": 0.1
+            },
+            "LA": {
+              "NYC": 2
+            }
+          },
+          "orders": [
+            {
+              "in": "mat1_sup1",
+              "out": "mat1_manuf1",
+              "sender": "sup1",
+              "recipient": "manuf1",
+              "qty": 0
+            },
+            {
+              "in": "mat2_sup1",
+              "out": "mat2_manuf1",
+              "sender": "sup1",
+              "recipient": "manuf1",
+              "qty": 18000
+            },
+            {
+              "in": "mat1_sup2",
+              "out": "mat1_manuf1",
+              "sender": "sup2",
+              "recipient": "manuf1",
+              "qty": 6000
+            },
+            {
+              "in": "mat2_sup2",
+              "out": "mat2_manuf1",
+              "sender": "sup2",
+              "recipient": "manuf1",
+              "qty": 0
+            }
+          ]
+        },
+        "tier1manuf": {
+          "type": "manufacturer",
+          "inFlow": {
+            "mat1_manuf1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_manuf1": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "outFlow": {
+            "part1_manuf12": {
+              "qty": 3000,
+              "lb": 0,
+              "ppu": 1,
+              "item": "part1"
+            },
+            "part2_manuf12": {
+              "qty": 5000,
+              "lb": 0,
+              "ppu": 2,
+              "item": "part2"
+            }
+          },
+          "qtyInPer1out": {
+            "part1_manuf12": {
+              "mat1_manuf1": 2,
+              "mat2_manuf1": 1
+            },
+            "part2_manuf12": {
+              "mat2_manuf1": 3
+            }
+          }
+        },
+        "tier2manuf": {
+          "type": "manufacturer",
+          "inFlow": {
+            "part1_manuf12": {
+              "lb": 0,
+              "item": "part1"
+            },
+            "part2_manuf12": {
+              "lb": 0,
+              "item": "part2"
+            }
+          },
+          "outFlow": {
+            "prod1_manuf2": {
+              "qty": 1000,
+              "lb": 0,
+              "ppu": 5,
+              "item": "prod1"
+            },
+            "prod2_manuf2": {
+              "qty": 2000,
+              "lb": 0,
+              "ppu": 6,
+              "item": "prod2"
+            }
+          },
+          "qtyInPer1out": {
+            "prod1_manuf2": {
+              "part1_manuf12": 3,
+              "part2_manuf12": 1
+            },
+            "prod2_manuf2": {
+              "part2_manuf12": 2
+            }
+          }
+        }
+      }
+    },
+    "report": {
+      "Problem": [
+        {
+          "Lower bound": "129600.0",
+          "Name": "unknown",
+          "Number of constraints": 91,
+          "Number of nonzeros": 145,
+          "Number of objectives": 1,
+          "Number of variables": 17,
+          "Sense": "minimize",
+          "Upper bound": "129600.0"
+        }
+      ],
+      "Solution": [
+        {
+          "number of solutions": 0,
+          "number of solutions displayed": 0
+        }
+      ],
+      "Solver": [
+        {
+          "Error rc": 0,
+          "Statistics": {
+            "Branch and bound": {
+              "Number of bounded subproblems": "1",
+              "Number of created subproblems": "1"
+            }
+          },
+          "Status": "ok",
+          "Termination condition": "optimal",
+          "Time": 0.05702090263366699
+        }
+      ]
+    }
+  },
+  "optOutput": {
+    "cost": 129600,
+    "constraints": true,
+    "rootService": "mySupplyChain",
+    "services": {
+      "sup1": {
+        "type": "supplier",
+        "cost": 72000,
+        "constraints": true,
+        "inFlow": {},
+        "outFlow": {
+          "mat1_sup1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 18000,
+            "item": "mat2"
+          }
+        }
+      },
+      "sup2": {
+        "type": "supplier",
+        "cost": 12000,
+        "constraints": true,
+        "inFlow": {},
+        "outFlow": {
+          "mat1_sup2": {
+            "qty": 6000,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        }
+      },
+      "combinedSupply": {
+        "type": "composite",
+        "cost": 84000,
+        "constraints": true,
+        "inFlow": {},
+        "outFlow": {
+          "mat1_sup1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 18000,
+            "item": "mat2"
+          },
+          "mat1_sup2": {
+            "qty": 6000,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "subServices": [
+          "sup1",
+          "sup2"
+        ]
+      },
+      "transp1": {
+        "type": "transport",
+        "cost": 0,
+        "constraints": true,
+        "inFlow": {
+          "mat1_sup1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 0,
+            "item": "mat2"
+          },
+          "mat1_sup2": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "outFlow": {
+          "mat1_manuf1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_manuf1": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "debug": {
+          "busEntities": {
+            "sup1": {
+              "loc": "Fairfax"
+            },
+            "sup2": {
+              "loc": "LA"
+            },
+            "transp1": {
+              "loc": "Seattle"
+            },
+            "transp2": {
+              "loc": "Baltimore"
+            },
+            "manuf1": {
+              "loc": "NYC"
+            },
+            "manuf2": {
+              "loc": "NYC"
+            }
+          },
+          "sourceLocations": [
+            "Fairfax",
+            "LA"
+          ],
+          "destsPerSource": {
+            "Fairfax": [
+              "NYC"
+            ],
+            "LA": [
+              "NYC"
+            ]
+          }
+        }
+      },
+      "transp2": {
+        "type": "transport",
+        "cost": 15600,
+        "constraints": true,
+        "inFlow": {
+          "mat1_sup1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 18000,
+            "item": "mat2"
+          },
+          "mat1_sup2": {
+            "qty": 6000,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "outFlow": {
+          "mat1_manuf1": {
+            "qty": 6000,
+            "item": "mat1"
+          },
+          "mat2_manuf1": {
+            "qty": 18000,
+            "item": "mat2"
+          }
+        },
+        "debug": {
+          "busEntities": {
+            "sup1": {
+              "loc": "Fairfax"
+            },
+            "sup2": {
+              "loc": "LA"
+            },
+            "transp1": {
+              "loc": "Seattle"
+            },
+            "transp2": {
+              "loc": "Baltimore"
+            },
+            "manuf1": {
+              "loc": "NYC"
+            },
+            "manuf2": {
+              "loc": "NYC"
+            }
+          },
+          "sourceLocations": [
+            "Fairfax",
+            "LA"
+          ],
+          "destsPerSource": {
+            "Fairfax": [
+              "NYC"
+            ],
+            "LA": [
+              "NYC"
+            ]
+          }
+        }
+      },
+      "combinedTransport": {
+        "type": "composite",
+        "cost": 15600,
+        "constraints": true,
+        "inFlow": {
+          "mat1_sup1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 18000,
+            "item": "mat2"
+          },
+          "mat1_sup2": {
+            "qty": 6000,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "outFlow": {
+          "mat1_manuf1": {
+            "qty": 6000,
+            "item": "mat1"
+          },
+          "mat2_manuf1": {
+            "qty": 18000,
+            "item": "mat2"
+          }
+        },
+        "subServices": [
+          "transp1",
+          "transp2"
+        ]
+      },
+      "tier1manuf": {
+        "type": "manufacturer",
+        "cost": 13000,
+        "constraints": true,
+        "inFlow": {
+          "mat1_manuf1": {
+            "qty": 6000,
+            "item": "mat1"
+          },
+          "mat2_manuf1": {
+            "qty": 18000,
+            "item": "mat2"
+          }
+        },
+        "outFlow": {
+          "part1_manuf12": {
+            "qty": 3000,
+            "item": "part1"
+          },
+          "part2_manuf12": {
+            "qty": 5000,
+            "item": "part2"
+          }
+        }
+      },
+      "tier2manuf": {
+        "type": "manufacturer",
+        "cost": 17000,
+        "constraints": true,
+        "inFlow": {
+          "part1_manuf12": {
+            "qty": 3000,
+            "item": "part1"
+          },
+          "part2_manuf12": {
+            "qty": 5000,
+            "item": "part2"
+          }
+        },
+        "outFlow": {
+          "prod1_manuf2": {
+            "qty": 1000,
+            "item": "prod1"
+          },
+          "prod2_manuf2": {
+            "qty": 2000,
+            "item": "prod2"
+          }
+        }
+      },
+      "combinedManuf": {
+        "type": "composite",
+        "cost": 30000,
+        "constraints": true,
+        "inFlow": {
+          "mat1_manuf1": {
+            "qty": 6000,
+            "item": "mat1"
+          },
+          "mat2_manuf1": {
+            "qty": 18000,
+            "item": "mat2"
+          }
+        },
+        "outFlow": {
+          "prod1_manuf2": {
+            "qty": 1000,
+            "item": "prod1"
+          },
+          "prod2_manuf2": {
+            "qty": 2000,
+            "item": "prod2"
+          }
+        },
+        "subServices": [
+          "tier1manuf",
+          "tier2manuf"
+        ]
+      },
+      "mySupplyChain": {
+        "type": "composite",
+        "cost": 129600,
+        "constraints": true,
+        "inFlow": {},
+        "outFlow": {
+          "prod1_manuf2": {
+            "qty": 1000,
+            "item": "prod1"
+          },
+          "prod2_manuf2": {
+            "qty": 2000,
+            "item": "prod2"
+          }
+        },
+        "subServices": [
+          "combinedSupply",
+          "combinedTransport",
+          "combinedManuf"
+        ]
+      }
+    }
+  }
+}

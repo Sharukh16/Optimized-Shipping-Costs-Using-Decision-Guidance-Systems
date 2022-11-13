@@ -1,0 +1,42 @@
+{
+  "busEntities": {
+    "sup1": {
+      "loc": "Fairfax"
+    },
+    "sup2": {
+      "loc": "LA"
+    },
+    "transp1": {
+      "loc": "Seattle"
+    },
+    "transp2": {
+      "loc": "Baltimore"
+    },
+    "manuf1": {
+      "loc": "NYC"
+    },
+    "manuf2": {
+      "loc": "NYC"
+    }
+  },
+  "items": {
+    "mat1": {
+      "weight": 1
+    },
+    "mat2": {
+      "weight": 2
+    },
+    "part1": {
+      "weight": 7
+    },
+    "part2": {
+      "weight": 6
+    },
+    "prod1": {
+      "weight": 8
+    },
+    "prod2": {
+      "weight": 9
+    }
+  }
+}

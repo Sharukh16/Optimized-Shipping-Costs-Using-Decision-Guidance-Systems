@@ -1,0 +1,16 @@
+{
+  "type": "supplier",
+  "cost": 16000,
+  "constraints": true,
+  "inFlow": {},
+  "outFlow": {
+    "mat1_sup1": {
+      "qty": 2000,
+      "item": "mat1"
+    },
+    "mat2_sup1": {
+      "qty": 1500,
+      "item": "mat2"
+    }
+  }
+}

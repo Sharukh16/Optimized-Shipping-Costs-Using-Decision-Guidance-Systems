@@ -1,0 +1,180 @@
+{
+  "cost": 3000,
+  "constraints": true,
+  "rootService": "combinedManuf",
+  "services": {
+    "combinedManuf": {
+      "type": "composite",
+      "cost": 3000,
+      "constraints": true,
+      "inFlow": {
+        "mat1_manuf1": {
+          "qty": 600,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "qty": 1800,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "prod1_manuf2": {
+          "qty": 100,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "qty": 200,
+          "item": "prod2"
+        }
+      },
+      "subServices": [
+        "tier1manuf",
+        "tier2manuf"
+      ],
+      "debug": {
+        "flowKeys": [
+          "mat1_manuf1",
+          "mat2_manuf1",
+          "prod1_manuf2",
+          "prod2_manuf2",
+          "part1_manuf12",
+          "part2_manuf12"
+        ],
+        "subServiceMetrics": {
+          "tier1manuf": {
+            "type": "manufacturer",
+            "cost": 1300,
+            "constraints": true,
+            "inFlow": {
+              "mat1_manuf1": {
+                "qty": 600,
+                "item": "mat1"
+              },
+              "mat2_manuf1": {
+                "qty": 1800,
+                "item": "mat2"
+              }
+            },
+            "outFlow": {
+              "part1_manuf12": {
+                "qty": 300,
+                "item": "part1"
+              },
+              "part2_manuf12": {
+                "qty": 500,
+                "item": "part2"
+              }
+            }
+          },
+          "tier2manuf": {
+            "type": "manufacturer",
+            "cost": 1700,
+            "constraints": true,
+            "inFlow": {
+              "part1_manuf12": {
+                "qty": 300,
+                "item": "part1"
+              },
+              "part2_manuf12": {
+                "qty": 500,
+                "item": "part2"
+              }
+            },
+            "outFlow": {
+              "prod1_manuf2": {
+                "qty": 100,
+                "item": "prod1"
+              },
+              "prod2_manuf2": {
+                "qty": 200,
+                "item": "prod2"
+              }
+            }
+          }
+        },
+        "subServicesFlowSupply": {
+          "mat1_manuf1": 0,
+          "mat2_manuf1": 0,
+          "prod1_manuf2": 100,
+          "prod2_manuf2": 200,
+          "part1_manuf12": 300,
+          "part2_manuf12": 500
+        },
+        "subServicesFlowDemand": {
+          "mat1_manuf1": 600,
+          "mat2_manuf1": 1800,
+          "prod1_manuf2": 0,
+          "prod2_manuf2": 0,
+          "part1_manuf12": 300,
+          "part2_manuf12": 500
+        },
+        "inFlowKeys": [
+          "mat1_manuf1",
+          "mat2_manuf1"
+        ],
+        "outFlowKeys": [
+          "prod1_manuf2",
+          "prod2_manuf2"
+        ],
+        "internalFlowKeys": [
+          "part1_manuf12",
+          "part2_manuf12"
+        ],
+        "internalSupplySatisfiesDemand": true,
+        "inFlowConstraints": true,
+        "outFlowConstraints": true,
+        "subServiceConstraints": true
+      }
+    },
+    "tier1manuf": {
+      "type": "manufacturer",
+      "cost": 1300,
+      "constraints": true,
+      "inFlow": {
+        "mat1_manuf1": {
+          "qty": 600,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "qty": 1800,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "part1_manuf12": {
+          "qty": 300,
+          "item": "part1"
+        },
+        "part2_manuf12": {
+          "qty": 500,
+          "item": "part2"
+        }
+      }
+    },
+    "tier2manuf": {
+      "type": "manufacturer",
+      "cost": 1700,
+      "constraints": true,
+      "inFlow": {
+        "part1_manuf12": {
+          "qty": 300,
+          "item": "part1"
+        },
+        "part2_manuf12": {
+          "qty": 500,
+          "item": "part2"
+        }
+      },
+      "outFlow": {
+        "prod1_manuf2": {
+          "qty": 100,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "qty": 200,
+          "item": "prod2"
+        }
+      }
+    }
+  }
+}

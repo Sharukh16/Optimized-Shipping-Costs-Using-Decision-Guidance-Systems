@@ -1,0 +1,69 @@
+{
+  "type": "transport",
+  "inFlow": {
+    "mat1_sup1": {
+      "lb": 0,
+      "item": "mat1"
+    },
+    "mat2_sup1": {
+      "lb": 0,
+      "item": "mat2"
+    },
+    "mat1_sup2": {
+      "lb": 0,
+      "item": "mat1"
+    },
+    "mat2_sup2": {
+      "lb": 0,
+      "item": "mat2"
+    }
+  },
+  "outFlow": {
+    "mat1_manuf1": {
+      "lb": 0,
+      "item": "mat1"
+    },
+    "mat2_manuf1": {
+      "lb": 0,
+      "item": "mat2"
+    }
+  },
+  "pplbFromTo": {
+    "Fairfax": {
+      "NYC": 0.5
+    },
+    "LA": {
+      "NYC": 2.5
+    }
+  },
+  "orders": [
+    {
+      "in": "mat1_sup1",
+      "out": "mat1_manuf1",
+      "sender": "sup1",
+      "recipient": "manuf1",
+      "qty": 600
+    },
+    {
+      "in": "mat2_sup1",
+      "out": "mat2_manuf1",
+      "sender": "sup1",
+      "recipient": "manuf1",
+      "qty": 700
+    },
+    {
+      "in": "mat1_sup2",
+      "out": "mat1_manuf1",
+      "sender": "sup2",
+      "recipient": "manuf1",
+      "qty": 400
+    },
+    {
+      "in": "mat2_sup2",
+      "out": "mat2_manuf1",
+      "sender": "sup2",
+      "recipient": "manuf1",
+      "qty": 600
+    }
+  ]
+}

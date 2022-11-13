@@ -1,0 +1,25 @@
+{
+  "type": "manufacturer",
+  "cost": 1300,
+  "constraints": true,
+  "inFlow": {
+    "mat1_manuf1": {
+      "qty": 600,
+      "item": "mat1"
+    },
+    "mat2_manuf1": {
+      "qty": 1800,
+      "item": "mat2"
+    }
+  },
+  "outFlow": {
+    "part1_manuf12": {
+      "qty": 300,
+      "item": "part1"
+    },
+    "part2_manuf12": {
+      "qty": 500,
+      "item": "part2"
+    }
+  }
+}

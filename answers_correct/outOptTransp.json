@@ -1,0 +1,440 @@
+{
+  "optAnswer": {
+    "status": {
+      "solver_status": "ok",
+      "termination_condition": "optimal"
+    },
+    "solution": {
+      "shared": {
+        "busEntities": {
+          "sup1": {
+            "loc": "Fairfax"
+          },
+          "sup2": {
+            "loc": "LA"
+          },
+          "transp1": {
+            "loc": "Seattle"
+          },
+          "transp2": {
+            "loc": "Baltimore"
+          },
+          "manuf1": {
+            "loc": "NYC"
+          },
+          "manuf2": {
+            "loc": "NYC"
+          }
+        },
+        "items": {
+          "mat1": {
+            "weight": 1
+          },
+          "mat2": {
+            "weight": 2
+          },
+          "part1": {
+            "weight": 7
+          },
+          "part2": {
+            "weight": 6
+          },
+          "prod1": {
+            "weight": 8
+          },
+          "prod2": {
+            "weight": 9
+          }
+        }
+      },
+      "rootService": "combinedTransport",
+      "services": {
+        "combinedTransport": {
+          "type": "composite",
+          "inFlow": {
+            "mat1_sup1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "lb": 0,
+              "item": "mat2"
+            },
+            "mat1_sup2": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "outFlow": {
+            "mat1_manuf1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_manuf1": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "subServices": [
+            "transp1",
+            "transp2"
+          ]
+        },
+        "transp1": {
+          "type": "transport",
+          "inFlow": {
+            "mat1_sup1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "lb": 0,
+              "item": "mat2"
+            },
+            "mat1_sup2": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "outFlow": {
+            "mat1_manuf1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_manuf1": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "pplbFromTo": {
+            "Fairfax": {
+              "NYC": 0.5
+            },
+            "LA": {
+              "NYC": 2.5
+            }
+          },
+          "orders": [
+            {
+              "in": "mat1_sup1",
+              "out": "mat1_manuf1",
+              "sender": "sup1",
+              "recipient": "manuf1",
+              "qty": 0
+            },
+            {
+              "in": "mat2_sup1",
+              "out": "mat2_manuf1",
+              "sender": "sup1",
+              "recipient": "manuf1",
+              "qty": 0
+            },
+            {
+              "in": "mat1_sup2",
+              "out": "mat1_manuf1",
+              "sender": "sup2",
+              "recipient": "manuf1",
+              "qty": 0
+            },
+            {
+              "in": "mat2_sup2",
+              "out": "mat2_manuf1",
+              "sender": "sup2",
+              "recipient": "manuf1",
+              "qty": 0
+            }
+          ]
+        },
+        "transp2": {
+          "type": "transport",
+          "inFlow": {
+            "mat1_sup1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup1": {
+              "lb": 0,
+              "item": "mat2"
+            },
+            "mat1_sup2": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_sup2": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "outFlow": {
+            "mat1_manuf1": {
+              "lb": 0,
+              "item": "mat1"
+            },
+            "mat2_manuf1": {
+              "lb": 0,
+              "item": "mat2"
+            }
+          },
+          "pplbFromTo": {
+            "Fairfax": {
+              "NYC": 0.1
+            },
+            "LA": {
+              "NYC": 2
+            }
+          },
+          "orders": [
+            {
+              "in": "mat1_sup1",
+              "out": "mat1_manuf1",
+              "sender": "sup1",
+              "recipient": "manuf1",
+              "qty": 1000
+            },
+            {
+              "in": "mat2_sup1",
+              "out": "mat2_manuf1",
+              "sender": "sup1",
+              "recipient": "manuf1",
+              "qty": 2000
+            },
+            {
+              "in": "mat1_sup2",
+              "out": "mat1_manuf1",
+              "sender": "sup2",
+              "recipient": "manuf1",
+              "qty": 0
+            },
+            {
+              "in": "mat2_sup2",
+              "out": "mat2_manuf1",
+              "sender": "sup2",
+              "recipient": "manuf1",
+              "qty": 0
+            }
+          ]
+        }
+      }
+    },
+    "report": {
+      "Problem": [
+        {
+          "Lower bound": "500.0",
+          "Name": "unknown",
+          "Number of constraints": 39,
+          "Number of nonzeros": 73,
+          "Number of objectives": 1,
+          "Number of variables": 9,
+          "Sense": "minimize",
+          "Upper bound": "500.0"
+        }
+      ],
+      "Solution": [
+        {
+          "number of solutions": 0,
+          "number of solutions displayed": 0
+        }
+      ],
+      "Solver": [
+        {
+          "Error rc": 0,
+          "Statistics": {
+            "Branch and bound": {
+              "Number of bounded subproblems": "1",
+              "Number of created subproblems": "1"
+            }
+          },
+          "Status": "ok",
+          "Termination condition": "optimal",
+          "Time": 0.046317100524902344
+        }
+      ]
+    }
+  },
+  "optOutput": {
+    "cost": 500,
+    "constraints": true,
+    "rootService": "combinedTransport",
+    "services": {
+      "transp1": {
+        "type": "transport",
+        "cost": 0,
+        "constraints": true,
+        "inFlow": {
+          "mat1_sup1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 0,
+            "item": "mat2"
+          },
+          "mat1_sup2": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "outFlow": {
+          "mat1_manuf1": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_manuf1": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "debug": {
+          "busEntities": {
+            "sup1": {
+              "loc": "Fairfax"
+            },
+            "sup2": {
+              "loc": "LA"
+            },
+            "transp1": {
+              "loc": "Seattle"
+            },
+            "transp2": {
+              "loc": "Baltimore"
+            },
+            "manuf1": {
+              "loc": "NYC"
+            },
+            "manuf2": {
+              "loc": "NYC"
+            }
+          },
+          "sourceLocations": [
+            "LA",
+            "Fairfax"
+          ],
+          "destsPerSource": {
+            "LA": [
+              "NYC"
+            ],
+            "Fairfax": [
+              "NYC"
+            ]
+          }
+        }
+      },
+      "transp2": {
+        "type": "transport",
+        "cost": 500,
+        "constraints": true,
+        "inFlow": {
+          "mat1_sup1": {
+            "qty": 1000,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 2000,
+            "item": "mat2"
+          },
+          "mat1_sup2": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "outFlow": {
+          "mat1_manuf1": {
+            "qty": 1000,
+            "item": "mat1"
+          },
+          "mat2_manuf1": {
+            "qty": 2000,
+            "item": "mat2"
+          }
+        },
+        "debug": {
+          "busEntities": {
+            "sup1": {
+              "loc": "Fairfax"
+            },
+            "sup2": {
+              "loc": "LA"
+            },
+            "transp1": {
+              "loc": "Seattle"
+            },
+            "transp2": {
+              "loc": "Baltimore"
+            },
+            "manuf1": {
+              "loc": "NYC"
+            },
+            "manuf2": {
+              "loc": "NYC"
+            }
+          },
+          "sourceLocations": [
+            "LA",
+            "Fairfax"
+          ],
+          "destsPerSource": {
+            "LA": [
+              "NYC"
+            ],
+            "Fairfax": [
+              "NYC"
+            ]
+          }
+        }
+      },
+      "combinedTransport": {
+        "type": "composite",
+        "cost": 500,
+        "constraints": true,
+        "inFlow": {
+          "mat1_sup1": {
+            "qty": 1000,
+            "item": "mat1"
+          },
+          "mat2_sup1": {
+            "qty": 2000,
+            "item": "mat2"
+          },
+          "mat1_sup2": {
+            "qty": 0,
+            "item": "mat1"
+          },
+          "mat2_sup2": {
+            "qty": 0,
+            "item": "mat2"
+          }
+        },
+        "outFlow": {
+          "mat1_manuf1": {
+            "qty": 1000,
+            "item": "mat1"
+          },
+          "mat2_manuf1": {
+            "qty": 2000,
+            "item": "mat2"
+          }
+        },
+        "subServices": [
+          "transp1",
+          "transp2"
+        ]
+      }
+    }
+  }
+}

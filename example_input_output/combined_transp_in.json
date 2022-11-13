@@ -1,0 +1,220 @@
+{
+  "shared": {
+    "busEntities": {
+      "sup1": {
+        "loc": "Fairfax"
+      },
+      "sup2": {
+        "loc": "LA"
+      },
+      "transp1": {
+        "loc": "Seattle"
+      },
+      "transp2": {
+        "loc": "Baltimore"
+      },
+      "manuf1": {
+        "loc": "NYC"
+      },
+      "manuf2": {
+        "loc": "NYC"
+      }
+    },
+    "items": {
+      "mat1": {
+        "weight": 1
+      },
+      "mat2": {
+        "weight": 2
+      },
+      "part1": {
+        "weight": 7
+      },
+      "part2": {
+        "weight": 6
+      },
+      "prod1": {
+        "weight": 8
+      },
+      "prod2": {
+        "weight": 9
+      }
+    }
+  },
+  "rootService": "combinedTransport",
+  "services": {
+    "combinedTransport": {
+      "type": "composite",
+      "inFlow": {
+        "mat1_sup1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "lb": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "subServices": [
+        "transp1",
+        "transp2"
+      ]
+    },
+    "transp1": {
+      "type": "transport",
+      "inFlow": {
+        "mat1_sup1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "lb": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "pplbFromTo": {
+        "Fairfax": {
+          "NYC": 0.5
+        },
+        "LA": {
+          "NYC": 2.5
+        }
+      },
+      "orders": [
+        {
+          "in": "mat1_sup1",
+          "out": "mat1_manuf1",
+          "sender": "sup1",
+          "recipient": "manuf1",
+          "qty": 600
+        },
+        {
+          "in": "mat2_sup1",
+          "out": "mat2_manuf1",
+          "sender": "sup1",
+          "recipient": "manuf1",
+          "qty": 700
+        },
+        {
+          "in": "mat1_sup2",
+          "out": "mat1_manuf1",
+          "sender": "sup2",
+          "recipient": "manuf1",
+          "qty": 400
+        },
+        {
+          "in": "mat2_sup2",
+          "out": "mat2_manuf1",
+          "sender": "sup2",
+          "recipient": "manuf1",
+          "qty": 600
+        }
+      ]
+    },
+    "transp2": {
+      "type": "transport",
+      "inFlow": {
+        "mat1_sup1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "lb": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "pplbFromTo": {
+        "Fairfax": {
+          "NYC": 0.1
+        },
+        "LA": {
+          "NYC": 2
+        }
+      },
+      "orders": [
+        {
+          "in": "mat1_sup1",
+          "out": "mat1_manuf1",
+          "sender": "sup1",
+          "recipient": "manuf1",
+          "qty": 0
+        },
+        {
+          "in": "mat2_sup1",
+          "out": "mat2_manuf1",
+          "sender": "sup1",
+          "recipient": "manuf1",
+          "qty": 0
+        },
+        {
+          "in": "mat1_sup2",
+          "out": "mat1_manuf1",
+          "sender": "sup2",
+          "recipient": "manuf1",
+          "qty": 0
+        },
+        {
+          "in": "mat2_sup2",
+          "out": "mat2_manuf1",
+          "sender": "sup2",
+          "recipient": "manuf1",
+          "qty": 600
+        }
+      ]
+    }
+  }
+}

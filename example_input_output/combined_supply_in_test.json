@@ -1,0 +1,109 @@
+{
+  "shared": {
+    "busEntities": {
+      "sup1": {
+        "loc": "Fairfax"
+      },
+      "sup2": {
+        "loc": "LA"
+      },
+      "transp1": {
+        "loc": "Seattle"
+      },
+      "transp2": {
+        "loc": "Baltimore"
+      },
+      "manuf1": {
+        "loc": "NYC"
+      },
+      "manuf2": {
+        "loc": "NYC"
+      }
+    },
+    "items": {
+      "mat1": {
+        "weight": 1
+      },
+      "mat2": {
+        "weight": 2
+      },
+      "part1": {
+        "weight": 7
+      },
+      "part2": {
+        "weight": 6
+      },
+      "prod1": {
+        "weight": 8
+      },
+      "prod2": {
+        "weight": 9
+      }
+    }
+  },
+  "rootService": "combinedSupply",
+  "services": {
+    "combinedSupply": {
+      "type": "composite",
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "lb": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "subServices": [
+        "sup1",
+        "sup2"
+      ]
+    },
+    "sup1": {
+      "type": "supplier",
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup1": {
+          "qty": 2000,
+          "lb": 0,
+          "ppu": 5,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "qty": 1500,
+          "lb": 0,
+          "ppu": 4,
+          "item": "mat2"
+        }
+      }
+    },
+    "sup2": {
+      "type": "supplier",
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup2": {
+          "qty": 500,
+          "lb": 0,
+          "ppu": 2,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "qty": 1300,
+          "lb": 0,
+          "ppu": 3,
+          "item": "mat2"
+        }
+      }
+    }
+  }
+}

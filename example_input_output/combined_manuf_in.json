@@ -1,0 +1,146 @@
+{
+  "shared": {
+    "busEntities": {
+      "sup1": {
+        "loc": "Fairfax"
+      },
+      "sup2": {
+        "loc": "LA"
+      },
+      "transp1": {
+        "loc": "Seattle"
+      },
+      "transp2": {
+        "loc": "Baltimore"
+      },
+      "manuf1": {
+        "loc": "NYC"
+      },
+      "manuf2": {
+        "loc": "NYC"
+      }
+    },
+    "items": {
+      "mat1": {
+        "weight": 1
+      },
+      "mat2": {
+        "weight": 2
+      },
+      "part1": {
+        "weight": 7
+      },
+      "part2": {
+        "weight": 6
+      },
+      "prod1": {
+        "weight": 8
+      },
+      "prod2": {
+        "weight": 9
+      }
+    }
+  },
+  "rootService": "combinedManuf",
+  "services": {
+    "combinedManuf": {
+      "type": "composite",
+      "inFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "prod1_manuf2": {
+          "lb": 0,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "lb": 0,
+          "item": "prod2"
+        }
+      },
+      "subServices": [
+        "tier1manuf",
+        "tier2manuf"
+      ]
+    },
+    "tier1manuf": {
+      "type": "manufacturer",
+      "inFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "part1_manuf12": {
+          "qty": 300,
+          "lb": 0,
+          "ppu": 1,
+          "item": "part1"
+        },
+        "part2_manuf12": {
+          "qty": 500,
+          "lb": 0,
+          "ppu": 2,
+          "item": "part2"
+        }
+      },
+      "qtyInPer1out": {
+        "part1_manuf12": {
+          "mat1_manuf1": 2,
+          "mat2_manuf1": 1
+        },
+        "part2_manuf12": {
+          "mat2_manuf1": 3
+        }
+      }
+    },
+    "tier2manuf": {
+      "type": "manufacturer",
+      "inFlow": {
+        "part1_manuf12": {
+          "lb": 0,
+          "item": "part1"
+        },
+        "part2_manuf12": {
+          "lb": 0,
+          "item": "part2"
+        }
+      },
+      "outFlow": {
+        "prod1_manuf2": {
+          "qty": 100,
+          "lb": 0,
+          "ppu": 5,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "qty": 200,
+          "lb": 0,
+          "ppu": 6,
+          "item": "prod2"
+        }
+      },
+      "qtyInPer1out": {
+        "prod1_manuf2": {
+          "part1_manuf12": 3,
+          "part2_manuf12": 1
+        },
+        "prod2_manuf2": {
+          "part2_manuf12": 2
+        }
+      }
+    }
+  }
+}

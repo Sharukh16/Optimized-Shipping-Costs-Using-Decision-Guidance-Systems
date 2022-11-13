@@ -1,0 +1,36 @@
+{
+  "type": "manufacturer",
+  "inFlow": {
+    "mat1_manuf1": {
+      "lb": 0,
+      "item": "mat1"
+    },
+    "mat2_manuf1": {
+      "lb": 0,
+      "item": "mat2"
+    }
+  },
+  "outFlow": {
+    "part1_manuf12": {
+      "qty": 300,
+      "lb": 0,
+      "ppu": 1,
+      "item": "part1"
+    },
+    "part2_manuf12": {
+      "qty": 500,
+      "lb": 0,
+      "ppu": 2,
+      "item": "part2"
+    }
+  },
+  "qtyInPer1out": {
+    "part1_manuf12": {
+      "mat1_manuf1": 2,
+      "mat2_manuf1": 1
+    },
+    "part2_manuf12": {
+      "mat2_manuf1": 3
+    }
+  }
+}

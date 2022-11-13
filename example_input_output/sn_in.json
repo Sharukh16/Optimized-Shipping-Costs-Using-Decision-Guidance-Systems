@@ -1,0 +1,400 @@
+{
+  "shared": {
+    "busEntities": {
+      "sup1": {
+        "loc": "Fairfax"
+      },
+      "sup2": {
+        "loc": "LA"
+      },
+      "transp1": {
+        "loc": "Seattle"
+      },
+      "transp2": {
+        "loc": "Baltimore"
+      },
+      "manuf1": {
+        "loc": "NYC"
+      },
+      "manuf2": {
+        "loc": "NYC"
+      }
+    },
+    "items": {
+      "mat1": {
+        "weight": 1
+      },
+      "mat2": {
+        "weight": 2
+      },
+      "part1": {
+        "weight": 7
+      },
+      "part2": {
+        "weight": 6
+      },
+      "prod1": {
+        "weight": 8
+      },
+      "prod2": {
+        "weight": 9
+      }
+    }
+  },
+  "rootService": "mySupplyChain",
+  "services": {
+    "mySupplyChain": {
+      "type": "composite",
+      "inFlow": {},
+      "outFlow": {
+        "prod1_manuf2": {
+          "lb": 100,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "lb": 200,
+          "item": "prod2"
+        }
+      },
+      "subServices": [
+        "combinedSupply",
+        "combinedTransport",
+        "combinedManuf"
+      ]
+    },
+    "combinedSupply": {
+      "type": "composite",
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "lb": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "subServices": [
+        "sup1",
+        "sup2"
+      ]
+    },
+    "combinedTransport": {
+      "type": "composite",
+      "inFlow": {
+        "mat1_sup1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "lb": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "subServices": [
+        "transp1",
+        "transp2"
+      ]
+    },
+    "combinedManuf": {
+      "type": "composite",
+      "inFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "prod1_manuf2": {
+          "lb": 0,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "lb": 0,
+          "item": "prod2"
+        }
+      },
+      "subServices": [
+        "tier1manuf",
+        "tier2manuf"
+      ]
+    },
+    "sup1": {
+      "type": "supplier",
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup1": {
+          "qty": 2000,
+          "lb": 0,
+          "ppu": 5,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "qty": 1500,
+          "lb": 0,
+          "ppu": 4,
+          "item": "mat2"
+        }
+      }
+    },
+    "sup2": {
+      "type": "supplier",
+      "inFlow": {},
+      "outFlow": {
+        "mat1_sup2": {
+          "qty": 500,
+          "lb": 0,
+          "ppu": 2,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "qty": 1300,
+          "lb": 0,
+          "ppu": 3,
+          "item": "mat2"
+        }
+      }
+    },
+    "transp1": {
+      "type": "transport",
+      "inFlow": {
+        "mat1_sup1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "lb": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "pplbFromTo": {
+        "Fairfax": {
+          "NYC": 0.5
+        },
+        "LA": {
+          "NYC": 2.5
+        }
+      },
+      "orders": [
+        {
+          "in": "mat1_sup1",
+          "out": "mat1_manuf1",
+          "sender": "sup1",
+          "recipient": "manuf1",
+          "qty": 600
+        },
+        {
+          "in": "mat2_sup1",
+          "out": "mat2_manuf1",
+          "sender": "sup1",
+          "recipient": "manuf1",
+          "qty": 700
+        },
+        {
+          "in": "mat1_sup2",
+          "out": "mat1_manuf1",
+          "sender": "sup2",
+          "recipient": "manuf1",
+          "qty": 400
+        },
+        {
+          "in": "mat2_sup2",
+          "out": "mat2_manuf1",
+          "sender": "sup2",
+          "recipient": "manuf1",
+          "qty": 600
+        }
+      ]
+    },
+    "transp2": {
+      "type": "transport",
+      "inFlow": {
+        "mat1_sup1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup1": {
+          "lb": 0,
+          "item": "mat2"
+        },
+        "mat1_sup2": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_sup2": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "pplbFromTo": {
+        "Fairfax": {
+          "NYC": 0.1
+        },
+        "LA": {
+          "NYC": 2
+        }
+      },
+      "orders": [
+        {
+          "in": "mat1_sup1",
+          "out": "mat1_manuf1",
+          "sender": "sup1",
+          "recipient": "manuf1",
+          "qty": 0
+        },
+        {
+          "in": "mat2_sup1",
+          "out": "mat2_manuf1",
+          "sender": "sup1",
+          "recipient": "manuf1",
+          "qty": 0
+        },
+        {
+          "in": "mat1_sup2",
+          "out": "mat1_manuf1",
+          "sender": "sup2",
+          "recipient": "manuf1",
+          "qty": 0
+        },
+        {
+          "in": "mat2_sup2",
+          "out": "mat2_manuf1",
+          "sender": "sup2",
+          "recipient": "manuf1",
+          "qty": 600
+        }
+      ]
+    },
+    "tier1manuf": {
+      "type": "manufacturer",
+      "inFlow": {
+        "mat1_manuf1": {
+          "lb": 0,
+          "item": "mat1"
+        },
+        "mat2_manuf1": {
+          "lb": 0,
+          "item": "mat2"
+        }
+      },
+      "outFlow": {
+        "part1_manuf12": {
+          "qty": 300,
+          "lb": 0,
+          "ppu": 1,
+          "item": "part1"
+        },
+        "part2_manuf12": {
+          "qty": 500,
+          "lb": 0,
+          "ppu": 2,
+          "item": "part2"
+        }
+      },
+      "qtyInPer1out": {
+        "part1_manuf12": {
+          "mat1_manuf1": 2,
+          "mat2_manuf1": 1
+        },
+        "part2_manuf12": {
+          "mat2_manuf1": 3
+        }
+      }
+    },
+    "tier2manuf": {
+      "type": "manufacturer",
+      "inFlow": {
+        "part1_manuf12": {
+          "lb": 0,
+          "item": "part1"
+        },
+        "part2_manuf12": {
+          "lb": 0,
+          "item": "part2"
+        }
+      },
+      "outFlow": {
+        "prod1_manuf2": {
+          "qty": 100,
+          "lb": 0,
+          "ppu": 5,
+          "item": "prod1"
+        },
+        "prod2_manuf2": {
+          "qty": 200,
+          "lb": 0,
+          "ppu": 6,
+          "item": "prod2"
+        }
+      },
+      "qtyInPer1out": {
+        "prod1_manuf2": {
+          "part1_manuf12": 3,
+          "part2_manuf12": 1
+        },
+        "prod2_manuf2": {
+          "part2_manuf12": 2
+        }
+      }
+    }
+  }
+}
