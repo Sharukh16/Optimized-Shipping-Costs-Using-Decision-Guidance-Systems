@@ -1,7 +1,7 @@
 # Optimized-Shipping-Costs-Using-Decision-Guidance-Systems
 An analytical model using Python to provide optimized shipping costs for a shipping company involving suppliers and manufacturers and their transportation orders, by selecting the best combination of the involved entities depending upon the shipping cost per pound for a particular item for a sender/receiver pair.
 
- To run the implemented functions in Problem 1 below, use solution/main.py
+ To run the implemented functions use solution/main.py
 a. In terminal, make the downloaded folder your current folder
 b. In main.py uncomment invocation of the function you want to run, e.g.
 answer = ams.supplierMetrics(input) and comment other invocations
